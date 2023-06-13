@@ -1,6 +1,10 @@
 const express = require('express');
 const app = express();
 
+app.get("/",(req,res)=>{
+    res.send("Welcome to Micah's backend application");
+})
+
 app.get("/lorenzo", (req, res)=> {res.send("Welcome Lorenzo!");});
 
 app.get('/micah', (req,res) => {res.send("Hello Micah!");});
