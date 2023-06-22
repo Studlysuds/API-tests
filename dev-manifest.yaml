@@ -2,41 +2,41 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: micah-api
-  spec:
-    replicas: 1
-    selector:
-      matchLabels:
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: micah-api
+  template:
+    metadata:
+      labels:
         app: micah-api
-    template:
-      metadata:
-        labels:
-          app: micah-api
-      spec:
-        containers:
-          - name: micah-api
-            image: us-docker.pkg.dev/unstable-unicorns-389016/micah/api-tests
-            ports:
-              - containerPort: 3000
-            resources:
-              limits:
-                cpu: ".5"
-                memory: "500Mi"
-              requests:
-                cpu: ".25"
-                memory: "250Mi"
-            livenessProbe:
-              httpGet:
-                path: /
-                port: 3000
-                scheme: HTTP
-              failureThreshold: 1
-              periodSeconds: 10
-              timeoutSeconds: 10
-            startupProbe:
-              httpGet:
-                path: /
-                port: 3000
-                scheme: HTTP
-              failureThreshold: 30
-              periodSeconds: 10
-              timeoutSeconds: 10
+    spec:
+      containers:
+        - name: micah-api
+          image: us-docker.pkg.dev/unstable-unicorns-389016/micah/api-tests
+          ports:
+            - containerPort: 3000
+          resources:
+            limits:
+              cpu: ".5"
+              memory: "500Mi"
+            requests:
+              cpu: ".25"
+              memory: "250Mi"
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 3000
+              scheme: HTTP
+            failureThreshold: 1
+            periodSeconds: 10
+            timeoutSeconds: 10
+          startupProbe:
+            httpGet:
+              path: /
+              port: 3000
+              scheme: HTTP
+            failureThreshold: 30
+            periodSeconds: 10
+            timeoutSeconds: 10
